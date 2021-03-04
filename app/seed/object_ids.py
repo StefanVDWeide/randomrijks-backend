@@ -22,14 +22,10 @@ def insert_object_ids(db):
     basedir = os.path.abspath(os.path.dirname(__file__))
     object_csv_file = os.path.join(basedir, "data/202001-rma-csv-collection.csv")
 
-    object_ids = []
-
     for object_id in get_object_data(object_csv_file):
         db.session.add(Object(number=object_id))
+        db.session.flush()
 
-    db.session.bulk_save_objects(object_ids)
     db.session.commit()
-
-    # print(object_ids)
 
     return "Added object IDs to database"
