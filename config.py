@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 # Load the .env and .flaskenv variables
-load_dotenv(os.path.join(basedir, "api/.env"))
+load_dotenv(os.path.join(basedir, ".env"))
 
 
 # Set configuration variables used in the app
