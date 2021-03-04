@@ -1,0 +1,1 @@
+web: flask db upgrade; flask seed-database; gunicorn randomrijks:app
