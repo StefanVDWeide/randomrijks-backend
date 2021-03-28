@@ -5,6 +5,7 @@ from flask import jsonify
 class RijksmusemApi(object):
     def __init__(self, key, language, object_number):
         self.url = "https://www.rijksmuseum.nl/api/{}/collection/{}?key={}".format(language, object_number, key)
+        self.object_base_url = "https://www.rijksmuseum.nl/nl/collectie/" if language == "nl" else "https://www.rijksmuseum.nl/en/collection/"
 
     def create_json_response(self, json_response):
         payload = {
@@ -17,7 +18,7 @@ class RijksmusemApi(object):
                 "object_plaqueDescriptionEnglish": json_response["artObject"]["plaqueDescriptionEnglish"],
                 "object_principalMaker": json_response["artObject"]["principalMaker"],
                 "object_presentingDate": json_response["artObject"]["dating"]["presentingDate"],
-                "object_url": "https://www.rijksmuseum.nl/nl/collectie/{}".format(json_response["artObject"]["objectNumber"])
+                "object_url":  self.object_base_url + json_response["artObject"]["objectNumber"]
             }
         }
 
