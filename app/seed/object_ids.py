@@ -5,8 +5,8 @@ import os
 def get_object_data(file):
     with open(file, "r") as f:
         r = reader(f)
-        # Yield the header row
-        yield next(r)
+        # Skip the header row
+        next(r)
         for row in r:
             # Check if the object has an image availble
             if row[1]:
@@ -18,11 +18,12 @@ def insert_object_ids(db):
 
     if db.session.query(Object).first():
         return "Database already up to date"
-    
+
     basedir = os.path.abspath(os.path.dirname(__file__))
     object_csv_file = os.path.join(basedir, "data/202001-rma-csv-collection.csv")
 
     for object_id in get_object_data(object_csv_file):
+        print(object_id)
         db.session.add(Object(number=object_id))
         db.session.flush()
 
