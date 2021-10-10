@@ -17,7 +17,7 @@ class Config(object):
     # SQL Config
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "DATABASE_URL"
-    ) or "sqlite:///" + os.path.join(basedir, "/var/data/app.db")
+    ) or "sqlite:////" + os.path.join(basedir, "var/data/app.db")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Rijks Museum API key
