@@ -23,7 +23,6 @@ def insert_object_ids(db):
     object_csv_file = os.path.join(basedir, "data/202001-rma-csv-collection.csv")
 
     for object_id in get_object_data(object_csv_file):
-        print(object_id)
         db.session.add(Object(number=object_id))
         db.session.flush()
 
